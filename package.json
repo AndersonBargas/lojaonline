@@ -1,0 +1,9 @@
+{
+  "name": "lojaonline",
+  "version": "1.0.0",
+  "description": "API Rest Loja Online",
+  "main": "src/app.ts",
+  "repository": "git@github.com:AndersonBargas/lojaonline.git",
+  "author": "Anderson Bargas <anderson@andersonbargas.com>",
+  "license": "MIT"
+}
