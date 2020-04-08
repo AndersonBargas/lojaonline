@@ -5,5 +5,8 @@
   "main": "src/app.ts",
   "repository": "git@github.com:AndersonBargas/lojaonline.git",
   "author": "Anderson Bargas <anderson@andersonbargas.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
 }
