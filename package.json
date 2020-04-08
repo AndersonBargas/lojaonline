@@ -7,7 +7,7 @@
   "author": "Anderson Bargas <anderson@andersonbargas.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch 'src'/**/*.ts --exec 'ts-node' src/app.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
