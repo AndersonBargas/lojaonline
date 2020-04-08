@@ -1,7 +1,9 @@
 import express from 'express';
 import configs from './configs';
+import loaders from './loaders'
 
 const app = express();
+loaders({ app: app });
 
 
 app.listen(configs.port, err => {
