@@ -6,6 +6,11 @@
   "repository": "git@github.com:AndersonBargas/lojaonline.git",
   "author": "Anderson Bargas <anderson@andersonbargas.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --watch 'src'/**/*.ts --exec 'ts-node' src/app.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "devDependencies": {
     "@types/express": "^4.17.5",
     "@types/node": "^13.11.1",
