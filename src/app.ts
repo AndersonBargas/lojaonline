@@ -1,11 +1,12 @@
 import express from 'express';
+import configs from './configs';
 
 const app = express();
-const port = process.env.PORT || '8000';
 
-app.listen(port, err => {
+
+app.listen(configs.port, err => {
   if (err) {
     return console.error(err);
   }
-  return console.log(`Loja Online is ready on port #${port}`);
+  return console.log(`Loja Online is ready on port #${configs.port}`);
 });
