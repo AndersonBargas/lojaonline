@@ -14,6 +14,11 @@ export default ({ app }: { app: express.Application }) => {
     // api routes
     app.use(configs.apiPrefix, apiRoutes());
 
+    // invalid route handler
+    app.use((req, res) => {
+        return res.status(404).send().end();
+    });
+
     // error handler
     app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
         if (!err) {
