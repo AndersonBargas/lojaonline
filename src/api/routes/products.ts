@@ -47,7 +47,6 @@ export default (app: Router) => {
 
         productsController.searchProducts(query, pageNumber, resultsPerPage)
         .then(products => {
-            console.log(products);
             if (products['data'].length === 0) {
                 res.status(404).send();
             } else {
