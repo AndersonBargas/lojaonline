@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import guard from 'express-jwt-permissions';
 
 import productsController from '../../controllers/products';
 
@@ -8,7 +9,7 @@ export default (app: Router) => {
     app.use('/products', route);
 
     // create
-    route.post('/', (req: Request, res: Response, next: NextFunction) => {
+    route.post('/', guard().check(['create']), (req: Request, res: Response, next: NextFunction) => {
 
         const productDTO = {
             "name": req.body['name'],
@@ -27,7 +28,7 @@ export default (app: Router) => {
     });
 
     // delete
-    route.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
+    route.delete('/:id', guard().check(['delete']), (req: Request, res: Response, next: NextFunction) => {
 
         productsController.deleteProductByID(req.params['id'])
         .then(deletedProduct => {
@@ -40,7 +41,7 @@ export default (app: Router) => {
     });
 
     // list and search
-    route.get('/', (req: Request, res: Response, next: NextFunction) => {
+    route.get('/', guard().check(['read']), (req: Request, res: Response, next: NextFunction) => {
         const productName = req.query.productName?.toString() || '';
         
         let pageNumber = parseInt(req.query.pageNumber?.toString()) || 1;
@@ -64,7 +65,7 @@ export default (app: Router) => {
     });
 
     // read
-    route.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+    route.get('/:id', guard().check(['read']), (req: Request, res: Response, next: NextFunction) => {
         
         productsController.readProductByID(req.params['id'])
         .then(product => {
@@ -77,7 +78,7 @@ export default (app: Router) => {
     });
 
     // update
-    route.put('/:id', (req: Request, res: Response, next: NextFunction) => {
+    route.put('/:id', guard().check(['update']), (req: Request, res: Response, next: NextFunction) => {
 
         const productDTO = {
             "name": req.body['name'],
