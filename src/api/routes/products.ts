@@ -42,7 +42,12 @@ export default (app: Router) => {
     // list and search
     route.get('/', (req: Request, res: Response, next: NextFunction) => {
         const query = req.query.query?.toString() || '';
-        const pageNumber = parseInt(req.query.pageNumber?.toString()) || 1;
+        
+        let pageNumber = parseInt(req.query.pageNumber?.toString()) || 1;
+        if (pageNumber < 1) {
+            pageNumber = 1;
+        }
+
         const resultsPerPage = parseInt(req.query.resultsPerPage?.toString()) || 10;
 
         productsController.searchProducts(query, pageNumber, resultsPerPage)
