@@ -4,10 +4,14 @@ import loaders from './loaders'
 
 const app = express();
 
-
 async function appInit() {
 
-  await loaders({ app: app });
+    try {
+        await loaders({ app: app });
+    } catch (err) {
+        return console.error(err);
+    }
+  
 
   app.listen(configs.port, err => {
     if (err) {
