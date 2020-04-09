@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import apiRoutes from '../api';
 import configs from '../configs';
 import BadRequestError from '../errors/badRequestError';
+import NotFoundError from '../errors/notFoundError';
 
 export default ({ app }: { app: express.Application }) => {
 
@@ -15,6 +16,11 @@ export default ({ app }: { app: express.Application }) => {
 
     // error handler
     app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+        if (!err) {
+            return next(err);
+        }
+
+        // validation
         if (err.name === 'ValidationError') {
             const newErr = new BadRequestError("Validation Error");
             for (let field in err.errors) {
@@ -25,9 +31,16 @@ export default ({ app }: { app: express.Application }) => {
             }
 
             return res.status(400).send(newErr).end();
-        } else {
-            return res.status(500).send().end();
         }
+
+        // not found
+        if (err instanceof NotFoundError) {
+            return res.status(404).send().end();
+        }
+
+        // an unknown error
+        return res.status(500).send().end();
+        
     });
 
 };
