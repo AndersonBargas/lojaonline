@@ -164,7 +164,7 @@
             "in": "path",
             "description": "ID of product to return",
             "required": true,
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "body",
