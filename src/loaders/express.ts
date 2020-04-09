@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import jwt from 'express-jwt';
 
 import apiRoutes from '../api';
 import configs from '../configs';
@@ -11,8 +12,8 @@ export default ({ app }: { app: express.Application }) => {
     // middlewares
     app.use(bodyParser.json());
 
-    // api routes
-    app.use(configs.apiPrefix, apiRoutes());
+    // api routes with enforced authentication
+    app.use(configs.apiPrefix, jwt({ secret: configs.jwtSecret}), apiRoutes());
 
     // invalid route handler
     app.use((req, res) => {
@@ -23,6 +24,11 @@ export default ({ app }: { app: express.Application }) => {
     app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
         if (!err) {
             return next(err);
+        }
+
+        // invalid token
+        if (err.name === 'UnauthorizedError') {
+            res.status(401).send().end();
         }
 
         // validation
