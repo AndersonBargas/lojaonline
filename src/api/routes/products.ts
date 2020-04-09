@@ -41,7 +41,7 @@ export default (app: Router) => {
 
     // list and search
     route.get('/', (req: Request, res: Response, next: NextFunction) => {
-        const query = req.query.query?.toString() || '';
+        const productName = req.query.productName?.toString() || '';
         
         let pageNumber = parseInt(req.query.pageNumber?.toString()) || 1;
         if (pageNumber < 1) {
@@ -50,7 +50,7 @@ export default (app: Router) => {
 
         const resultsPerPage = parseInt(req.query.resultsPerPage?.toString()) || 10;
 
-        productsController.searchProducts(query, pageNumber, resultsPerPage)
+        productsController.searchProducts(productName, pageNumber, resultsPerPage)
         .then(products => {
             if (products['data'].length === 0) {
                 res.status(404).send();

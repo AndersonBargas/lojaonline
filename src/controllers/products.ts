@@ -108,14 +108,14 @@ async function updateProductByID (id: string, dto: IProductInputDTO) : Promise<I
 }
 
 // search
-async function searchProducts (query: string, pageNumber: number, resultsPerPage: number) : Promise<any> {
+async function searchProducts (productName: string, pageNumber: number, resultsPerPage: number) : Promise<any> {
 
     return new Promise<any>((res, rej) => {
 
         ProductSchema.aggregate([{
             "$facet": {
                 "data": [
-                    { "$match": query.trim().length === 0 ? {} : { name: { "$regex": query.trim(), "$options" : "i" } } },
+                    { "$match": productName.trim().length === 0 ? {} : { name: { "$regex": productName.trim(), "$options" : "i" } } },
                     { "$skip" : (pageNumber - 1) * resultsPerPage },
                     { "$limit": resultsPerPage },
                 ],
