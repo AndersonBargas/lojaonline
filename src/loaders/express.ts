@@ -14,11 +14,11 @@ export default ({ app }: { app: express.Application }) => {
     // middlewares
     app.use(bodyParser.json());
 
-    // load swagger doc onto root path
-    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
     // api routes with enforced authentication
     app.use(configs.apiPrefix, jwt({ secret: configs.jwtSecret}), apiRoutes());
+
+    // load swagger doc onto root path
+    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     // invalid route handler
     app.use((req, res) => {
