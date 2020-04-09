@@ -1,16 +1,21 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'express-jwt';
+import swaggerUi from 'swagger-ui-express';
 
 import apiRoutes from '../api';
 import configs from '../configs';
 import BadRequestError from '../errors/badRequestError';
 import NotFoundError from '../errors/notFoundError';
+import * as swaggerDocument from '../api/docs/swagger.json';
 
 export default ({ app }: { app: express.Application }) => {
 
     // middlewares
     app.use(bodyParser.json());
+
+    // load swagger doc onto root path
+    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     // api routes with enforced authentication
     app.use(configs.apiPrefix, jwt({ secret: configs.jwtSecret}), apiRoutes());
