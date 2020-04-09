@@ -31,11 +31,11 @@ O sistema encontra-se pronto para utilização no endereço: https://lojadoander
 
 Para utilizar a API, escolha um dos Tokens abaixo, conforme queira testar as permissões:
 
-### Permissão de Gerente
+### Permissão de Gerente :woman:
 
 > Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkdlcmVudGUiLCJpYXQiOjE1MTYyMzkwMjIsInBlcm1pc3Npb25zIjpbImNyZWF0ZSIsImRlbGV0ZSIsInJlYWQiLCJ1cGRhdGUiXX0.FcZKkbZGixR1TvKCqODi0WF346o0wdQruiqhF9ypGFk
 
-### Permissão de Cliente
+### Permissão de Cliente :sunglasses:
 
 > Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkNsaWVudGUiLCJpYXQiOjE1MTYyMzkwMjIsInBlcm1pc3Npb25zIjpbInJlYWQiXX0.a59mTza_lxikUUc43ZT_su89gjOwVhBsQSFg5IOaHPw
 
