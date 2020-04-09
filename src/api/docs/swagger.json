@@ -1,0 +1,268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple Online Store backend API swagger documentation.",
+    "version": "1.0.0",
+    "title": "Loja Online",
+    "contact": {
+      "email": "anderson@andersonbargas.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "lojadoanderson.herokuapp.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "products",
+      "description": "Everything about the Products"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Add a product to our online store",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Product object that we want to be inserted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Unknown error"
+          }
+        },
+        "security": [
+          {
+            "lojaonline_auth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "List all products / can be used for search",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Unknown error"
+          }
+        },
+        "security": [
+          {
+            "lojaonline_auth": []
+          }
+        ]
+      }
+    },
+    "/products/{ID}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Finds a specific product by their ID",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Unknown error"
+          }
+        },
+        "security": [
+          {
+            "lojaonline_auth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Update an existing product",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Product object that we want to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Unknown error"
+          }
+        },
+        "security": [
+          {
+            "lojaonline_auth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Deletes a product",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Unknown error"
+          }
+        },
+        "security": [
+          {
+            "lojaonline_auth": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "lojaonline_auth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more on our Github Repo",
+    "url": "https://github.com/AndersonBargas/lojaonline"
+  }
+}
