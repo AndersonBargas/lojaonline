@@ -12,8 +12,8 @@ let server:Server;
 
 beforeAll(async (done) => {
     server = await loaders({ app: app });
-    done()
-})
+    done();
+});
 
 
 afterAll(async (done) => {
