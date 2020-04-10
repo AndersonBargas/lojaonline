@@ -20,6 +20,7 @@ O certificado TLS é fornecido pela https://www.cloudflare.com
 - [x] JWT Validation
 - [x] Heroku Hosting
 - [x] Swagger Documentation
+- [x] Jest Testing
 - [ ] Leveled logging
 - [ ] Auth manager
 - [ ] Responsive SPA UI Frontend
