@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 import { Db } from 'mongodb';
 import configs from '../configs';
 
-export default async (): Promise<Db> => {
+export default async (): Promise<any> => {
 
-    const connection = await mongoose.connect(configs.databaseURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
-    return connection.connection.db;    
+    return await mongoose.connect(configs.databaseURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 };

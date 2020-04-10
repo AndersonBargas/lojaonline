@@ -1,5 +1,4 @@
 import express from 'express';
-import configs from './configs';
 import loaders from './loaders'
 
 const app = express();
@@ -7,18 +6,11 @@ const app = express();
 async function appInit() {
 
     try {
-        await loaders({ app: app });
+        const server = await loaders({ app: app });
+        return console.log('Loja Online is ready at:', server.address());
     } catch (err) {
         return console.error(err);
     }
-  
-
-  app.listen(configs.port, err => {
-    if (err) {
-      return console.error(err);
-    }
-    return console.log(`Loja Online is ready on port #${configs.port}`);
-  });
 
 }
 
